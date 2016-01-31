@@ -1,0 +1,44 @@
+security:
+    providers:
+        fos:
+            id: fos_user.user_provider.username
+
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    firewalls:
+        development:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        fos:
+            provider: fos
+            pattern: ^/
+            anonymous: ~
+            form_login:
+                check_path: /security/login_check
+                login_path: /security/login
+                csrf_provider: form.csrf_provider
+            logout:
+                path: /security/logout
+                target: /security/login
+
+    acl:
+        connection: default
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER: [ROLE_USER, ROLE_ADMIN, ROLE_SWITCH]
+
+    access_control:
+        - { path: ^/administration, role: ROLE_SUPER }
+        - { path: ^/application, role: ROLE_USER }
+        - { path: ^/security/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/security/logout, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/security/login_check, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/security/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/security/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY}
+
+jms_security_extra:
+    secure_all_services:  false
+    expressions:          true

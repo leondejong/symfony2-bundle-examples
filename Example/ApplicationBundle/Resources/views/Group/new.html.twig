@@ -1,0 +1,16 @@
+{% extends 'ExampleApplicationBundle:Layout:main.html.twig' %}
+{% form_theme form 'ExampleApplicationBundle:Form:field.html.twig' %}
+{% block header %}
+<h1>Create Group</h1>
+{% endblock header %}
+{% block local %}
+{% include "ExampleApplicationBundle:Group:navigation.html.twig" %}
+{% endblock local %}
+{% block content %}
+{% block update %}
+<form action="{{ path('group_create') }}" method="post" class="create" {{ form_enctype(form) }} novalidate>
+    {{ form_widget(form) }}
+    <button type="submit">Create Group</button>
+</form>
+{% endblock update %}
+{% endblock content %}

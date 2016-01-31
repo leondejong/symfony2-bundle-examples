@@ -1,0 +1,10 @@
+{% extends 'ExampleApplicationBundle:Layout:main.html.twig' %}
+{% block title %}Application{% endblock %}
+{% block content %}
+    {% block fos_user_content %}{% endblock %}
+{% endblock %}
+{% block footer %}
+    &#169;{{ "now"|date("Y") }}
+    - <a href="{{ path('fos_user_registration_register') }}">register</a>
+    - <a href="{{ path('fos_user_security_logout') }}">logout</a>
+{% endblock footer %}

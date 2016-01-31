@@ -1,0 +1,31 @@
+services:
+    kernel.listener.application_exception_listener:
+        class: Example\ApplicationBundle\EventListener\ApplicationExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+
+    application.twig.extension:
+        class:        Example\ApplicationBundle\Extensions\TwigExtension
+        arguments:    ["@service_container"]
+        tags:
+            - { name: twig.extension }
+
+    application.prefix.subscriber:
+        class: Example\ApplicationBundle\Subscriber\TablePrefix
+        arguments: [%table_prefix%]
+        tags:
+            - { name: doctrine.event_subscriber }
+
+    application.utilities:
+        class:        Example\ApplicationBundle\Components\Utilities
+
+    example.form.subscriber:
+        class:        Example\ApplicationBundle\Form\EventListener\FormSubscriber
+        arguments:    ["@form.factory", "@service_container"]
+
+    example.form.user_type:
+        class:        Example\ApplicationBundle\Form\Type\UserType
+        calls:
+            - [setSubscriber, ["@example.form.subscriber"]]
+        tags:
+            - { name: form.type, alias: example_applicationbundle_usertype}

@@ -1,0 +1,25 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: services.yml }
+    - { resource: security.yml }
+fos_user:
+    db_driver: orm
+    firewall_name: fos
+    user_class: Example\ApplicationBundle\Entity\FOSUser
+    use_listener: true
+    template:
+        engine: twig
+    from_email:
+        address: "%email_address%"
+        sender_name: "%email_name%"
+    group:
+        group_class: Example\ApplicationBundle\Entity\FOSGroup
+    registration:
+        confirmation:
+            enabled: false
+            from_email:
+                address: "%email_address%"
+                sender_name: "%email_name%"
+        form:
+            type: example_user_registration
+            handler: example_user.form.handler.registration

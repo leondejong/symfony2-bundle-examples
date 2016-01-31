@@ -1,0 +1,22 @@
+{% extends 'ExampleApplicationBundle:Layout:main.html.twig' %}
+{% form_theme edit_form 'ExampleApplicationBundle:Form:field.html.twig' %}
+{% block header %}
+<h1>Edit Message</h1>
+{% endblock header %}
+{% block local %}
+{% include "ExampleApplicationBundle:Message:navigation.html.twig" %}
+{% endblock local %}
+{% block content %}
+{% block update %}
+<form action="{{ path('message_update', { 'id': entity.id }) }}" method="post" class="update" {{ form_enctype(edit_form) }} novalidate>
+    {{ form_widget(edit_form) }}
+    <button type="submit">Edit Message</button>
+</form>
+{% endblock update %}
+{% block delete %}
+<form action="{{ path('message_delete', { 'id': entity.id }) }}" method="post" class="delete" novalidate>
+    {{ form_widget(delete_form) }}
+    <button type="submit">Delete Message</button>
+</form>
+{% endblock delete %}
+{% endblock content %}

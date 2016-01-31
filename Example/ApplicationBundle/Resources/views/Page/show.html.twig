@@ -1,0 +1,128 @@
+{% extends 'ExampleApplicationBundle:Layout:main.html.twig' %}
+{% block header %}
+<h1>Show Page</h1>
+{% endblock header %}
+{% block local %}
+{% include "ExampleApplicationBundle:Page:navigation.html.twig" %}
+{% endblock local %}
+{% block content %}
+{% block read %}
+<table class="read">
+    <tbody>
+        <tr>
+            <th>User</th>
+            {% if entity.user is empty %}
+            <td>-</td>
+            {% else %}
+            <td>{{ entity.user.username }}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>Category</th>
+            {% if entity.category is empty %}
+            <td>-</td>
+            {% else %}
+            <td>{{ entity.category.title }}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ entity.name }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ entity.type }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{ entity.status }}</td>
+        </tr>
+        <tr>
+            <th>Position</th>
+            <td>{{ entity.position }}</td>
+        </tr>
+        <tr>
+            <th>Data</th>
+            <td>{{ entity.data }}</td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Change</th>
+            <td>{{ entity.change|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ entity.title }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ entity.description }}</td>
+        </tr>
+        <tr>
+            <th>Preface</th>
+            <td>{{ entity.preface }}</td>
+        </tr>
+        <tr>
+            <th>Content</th>
+            <td>{{ entity.content }}</td>
+        </tr>
+        <tr>
+            <th>Tags</th>
+            <td>{{ entity.tags }}</td>
+        </tr>
+        <tr>
+            <th>Views</th>
+            <td>{{ entity.views }}</td>
+        </tr>
+        <tr>
+            <th>Marks</th>
+            <td>{{ entity.marks }}</td>
+        </tr>
+        <tr>
+            <th>Items</th>
+            {% if entity.items is empty %}
+            <td>-</td>
+            {% else %}
+            <td>{% for item in entity.items %}{{ item.title }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>Objects</th>
+            {% if entity.objects is empty %}
+            <td>-</td>
+            {% else %}
+            <td>{% for object in entity.objects %}{{ object.title }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>Messages</th>
+            {% if entity.messages is empty %}
+            <td>-</td>
+            {% else %}
+            <td>{% for message in entity.messages %}{{ message.title }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+{% endblock read %}
+{% block update %}
+<div class="update">
+    <a href="{{ path('page_edit', { 'id': entity.id }) }}">
+        Edit Page
+    </a>
+</div>
+{% endblock update %}
+{% block delete %}
+<form action="{{ path('page_delete', { 'id': entity.id }) }}" method="post" class="delete" novalidate>
+    {{ form_widget(delete_form) }}
+    <button type="submit">Delete Page</button>
+</form>
+{% endblock delete %}
+{% endblock content %}

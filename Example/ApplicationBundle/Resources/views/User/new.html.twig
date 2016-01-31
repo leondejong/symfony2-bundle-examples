@@ -1,0 +1,16 @@
+{% extends 'ExampleApplicationBundle:Layout:main.html.twig' %}
+{% form_theme form 'ExampleApplicationBundle:Form:field.html.twig' %}
+{% block header %}
+<h1>Create User</h1>
+{% endblock header %}
+{% block local %}
+{% include "ExampleApplicationBundle:User:navigation.html.twig" %}
+{% endblock local %}
+{% block content %}
+{% block update %}
+<form action="{{ path('user_create') }}" method="post" class="create" {{ form_enctype(form) }} novalidate>
+    {{ form_widget(form) }}
+    <button type="submit">Create User</button>
+</form>
+{% endblock update %}
+{% endblock content %}

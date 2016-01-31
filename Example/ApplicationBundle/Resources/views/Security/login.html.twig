@@ -1,0 +1,10 @@
+{% extends 'ExampleApplicationBundle:Layout:main.html.twig' %}
+{% block content %}
+<a href="{{ path('account_register') }}">
+    Register
+</a>
+<form action="{{ path('security_check') }}" method="post" class="login" {{ form_enctype(form) }} novalidate>
+    {{ form_widget(form) }}
+    <button type="submit">Login</button>
+</form>
+{% endblock %}

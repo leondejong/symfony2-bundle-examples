@@ -1,0 +1,43 @@
+{% extends 'ExampleApplicationBundle:Layout:main.html.twig' %}
+{% block header %}
+<h1>List User</h1>
+{% endblock header %}
+{% block local %}
+{% include "ExampleApplicationBundle:User:navigation.html.twig" %}
+{% endblock local %}
+{% block content %}
+{% block list %}
+<table class="list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Change</th>
+            <th>Username</th>
+            <th>Views</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{% if entity.change %}{{ entity.change|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.username }}</td>
+            <td>{{ entity.views }}</td>
+            <td>
+                <a href="{{ path('user_show', { 'id': entity.id }) }}">Read</a> - 
+                <a href="{{ path('user_edit', { 'id': entity.id }) }}">Update</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock list %}
+{% block create %}
+<div class="update">
+    <a href="{{ path('user_new') }}">
+        Create User
+    </a>
+</div>
+{% endblock create %}
+{% endblock content %}

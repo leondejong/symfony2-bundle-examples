@@ -1,0 +1,11 @@
+services:
+    example_user.registration.form.type:
+        class: Example\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: example_user_registration }
+    example_user.form.handler.registration:
+        class: Example\UserBundle\Form\Handler\RegistrationFormHandler
+        arguments: ["@fos_user.registration.form", "@request", "@fos_user.user_manager", "@fos_user.mailer", "@fos_user.util.token_generator"]
+        scope: request
+        public: false

@@ -1,0 +1,60 @@
+{% block navigation %}
+<ul>
+    {% block group %}
+    <li class="{% if app.request.attributes.get('_route') == 'group' %}active{% endif %}">
+        <a href="{{ path('group') }}">
+            Group
+        </a>
+    </li>
+    {% endblock group %}
+    {% block user %}
+    <li class="{% if app.request.attributes.get('_route') == 'user' %}active{% endif %}">
+        <a href="{{ path('user') }}">
+            User
+        </a>
+    </li>
+    {% endblock user %}
+    {% block profile %}
+    <li class="{% if app.request.attributes.get('_route') == 'profile' %}active{% endif %}">
+        <a href="{{ path('profile') }}">
+            Profile
+        </a>
+    </li>
+    {% endblock profile %}
+    {% block category %}
+    <li class="{% if app.request.attributes.get('_route') == 'category' %}active{% endif %}">
+        <a href="{{ path('category') }}">
+            Category
+        </a>
+    </li>
+    {% endblock category %}
+    {% block page %}
+    <li class="{% if app.request.attributes.get('_route') == 'page' %}active{% endif %}">
+        <a href="{{ path('page') }}">
+            Page
+        </a>
+    </li>
+    {% endblock page %}
+    {% block item %}
+    <li class="{% if app.request.attributes.get('_route') == 'item' %}active{% endif %}">
+        <a href="{{ path('item') }}">
+            Item
+        </a>
+    </li>
+    {% endblock item %}
+    {% block object %}
+    <li class="{% if app.request.attributes.get('_route') == 'object' %}active{% endif %}">
+        <a href="{{ path('object') }}">
+            Object
+        </a>
+    </li>
+    {% endblock object %}
+    {% block message %}
+    <li class="{% if app.request.attributes.get('_route') == 'message' %}active{% endif %}">
+        <a href="{{ path('message') }}">
+            Message
+        </a>
+    </li>
+    {% endblock message %}
+</ul>
+{% endblock navigation %}

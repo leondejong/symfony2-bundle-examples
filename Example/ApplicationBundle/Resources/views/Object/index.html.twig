@@ -1,0 +1,43 @@
+{% extends 'ExampleApplicationBundle:Layout:main.html.twig' %}
+{% block header %}
+<h1>List Object</h1>
+{% endblock header %}
+{% block local %}
+{% include "ExampleApplicationBundle:Object:navigation.html.twig" %}
+{% endblock local %}
+{% block content %}
+{% block list %}
+<table class="list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Change</th>
+            <th>Title</th>
+            <th>Views</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('object_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{% if entity.change %}{{ entity.change|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.title }}</td>
+            <td>{{ entity.views }}</td>
+            <td>
+                <a href="{{ path('object_show', { 'id': entity.id }) }}">Read</a> - 
+                <a href="{{ path('object_edit', { 'id': entity.id }) }}">Update</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock list %}
+{% block create %}
+<div class="update">
+    <a href="{{ path('object_new') }}">
+        Create Object
+    </a>
+</div>
+{% endblock create %}
+{% endblock content %}

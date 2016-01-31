@@ -1,0 +1,38 @@
+{% extends 'ExampleApplicationBundle:Layout:base.html.twig' %}
+{% block body %}
+<div id="container">
+    {% block container %}
+    <header>
+        {% block header %}
+        <h1>
+            Application
+        </h1>
+        {% endblock header %}
+    </header>
+    <nav id="global">
+        {% block global %}
+        {% include "ExampleApplicationBundle:Component:navigation.html.twig" %}
+        {% endblock global %}
+    </nav>
+    <div id="message">
+        {% block message %}
+        {% include "ExampleApplicationBundle:Component:message.html.twig" %}
+        {% endblock message %}
+    </div>
+    <nav id="local">
+        {% block local %}
+        {% include "ExampleApplicationBundle:Component:navigation.html.twig" %}
+        {% endblock local %}
+    </nav>
+    <div id="content">
+        {% block content %}{% endblock content %}
+    </div>
+    <footer>
+        {% block footer %}
+        &#169;{{ "now"|date("Y") }} - <a href="{{ path('security_logout') }}">logout</a>
+        {% endblock footer %}
+    </footer>
+    {% endblock container %}
+    <div class="clear">
+</div>
+{% endblock body %}

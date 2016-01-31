@@ -1,0 +1,60 @@
+{% block navigation %}
+<ul>
+    {% block index %}
+    <li>
+        <a href="{{ path('index') }}">
+            Home
+        </a>
+    </li>
+    {% endblock index %}
+    {% block test %}
+    <li>
+        <a href="{{ path('test') }}">
+            Test
+        </a>
+    </li>
+    {% endblock test %}
+    {% block value %}
+    <li>
+        <a href="{{ path('test_value') }}">
+            Value
+        </a>
+    </li>
+    {% endblock value %}
+    {% block file %}
+    <li>
+        <a href="{{ path('test_file', {'name' : 'file'}) }}">
+            File
+        </a>
+    </li>
+    {% endblock file %}
+    {% block forward %}
+    <li>
+        <a href="{{ path('test_forward') }}">
+            Forward
+        </a>
+    </li>
+    {% endblock forward %}
+    {% block redirect %}
+    <li>
+        <a href="{{ path('test_redirect') }}">
+            Redirect
+        </a>
+    </li>
+    {% endblock redirect %}
+    {% block error %}
+    <li>
+        <a href="{{ path('test_error') }}">
+            Error
+        </a>
+    </li>
+    {% endblock error %}
+    {% block form %}
+    <li>
+        <a href="{{ path('test_form') }}">
+            Form
+        </a>
+    </li>
+    {% endblock form %}
+</ul>
+{% endblock navigation %}

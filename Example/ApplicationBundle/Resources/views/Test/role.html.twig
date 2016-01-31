@@ -1,0 +1,21 @@
+{% extends 'ExampleApplicationBundle:Layout:main.html.twig' %}
+{% block local %}
+{% include "ExampleApplicationBundle:Component:testnav.html.twig" %}
+{% endblock local %}
+{% block content %}
+    <div>
+        Roles granted:
+        {% if is_granted('ROLE_SUPER') %}
+        super, 
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+        admin, 
+        {% endif %}
+        {% if is_granted('ROLE_USER') %}
+        user
+        {% endif %}
+        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+        <a href="{{ path('index', {_switch: '_exit'}) }}">Exit impersonation</a>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% block message %}
+    {% block notice %}
+    {% for notice in app.session.flashbag.get('notice') %}
+    <div class="notice">
+        {{ notice }}
+    </div>
+    {% endfor %}
+    {% endblock notice %}
+    {% block success %}
+    {% for success in app.session.flashbag.get('success') %}
+    <div class="success">
+        {{ success }}
+    </div>
+    {% endfor %}
+    {% endblock success %}
+    {% block failure %}
+    {% for failure in app.session.flashbag.get('failure') %}
+    <div class="failure">
+        {{ failure }}
+    </div>
+    {% endfor %}
+    {% endblock failure %}
+{% endblock message %}
